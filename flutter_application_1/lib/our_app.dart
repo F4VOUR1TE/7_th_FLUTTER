@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/gifts_page.dart';
 import 'package:flutter_application_1/user_page.dart';
 
 import 'info_page.dart';
@@ -18,6 +19,6 @@ class App extends StatelessWidget {
           primarySwatch: Colors.purple,
         ),
         // home: const SafeArea(child: MyHomePage()));
-        home: const SafeArea(child: MyHomePage()));
+        home: const SafeArea(child: Gifts()));
   }
 }

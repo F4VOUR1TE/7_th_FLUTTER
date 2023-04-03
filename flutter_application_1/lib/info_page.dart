@@ -9,9 +9,9 @@ class Info extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/images/bg.png"), fit: BoxFit.cover)),
+                image: AssetImage("assets/images/bg1.png"), fit: BoxFit.cover)),
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
@@ -22,6 +22,7 @@ class Info extends StatelessWidget {
                         icon: const Icon(Icons.arrow_back),
                         iconSize: 50,
                         onPressed: () => print('zalupa 1'),
+                        tooltip: 'Назад',
                       ))),
               Expanded(
                   flex: 5,
