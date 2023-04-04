@@ -4,7 +4,7 @@ class Info extends StatelessWidget {
   const Info({super.key});
 
   @override
-  Widget build(Object context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -21,7 +21,9 @@ class Info extends StatelessWidget {
                       child: IconButton(
                         icon: const Icon(Icons.arrow_back),
                         iconSize: 50,
-                        onPressed: () => print('zalupa 1'),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         tooltip: 'Назад',
                       ))),
               Expanded(

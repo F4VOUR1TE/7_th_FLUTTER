@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/custom_icons.dart';
 import 'package:flutter_application_1/gifts_page.dart';
+import 'package:flutter_application_1/info_page.dart';
 
-class MyHomePage_test extends StatefulWidget {
-  const MyHomePage_test({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
   @override
-  State<MyHomePage_test> createState() => _MyHomePageState_test();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState_test extends State<MyHomePage_test> {
+class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -37,6 +38,7 @@ class _MyHomePageState_test extends State<MyHomePage_test> {
                     top: 10,
                     left: 10,
                     child: FloatingActionButton(
+                      heroTag: "btn1",
                       onPressed: () {
                         Navigator.push(
                             context,
@@ -53,11 +55,18 @@ class _MyHomePageState_test extends State<MyHomePage_test> {
                     top: 10,
                     right: 10,
                     child: FloatingActionButton(
-                      onPressed: _incrementCounter,
+                      heroTag: "btn2",
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const SafeArea(child: Info())));
+                      },
                       backgroundColor: Color.fromARGB(255, 5, 142, 76),
                       tooltip: 'Информация',
                       child: const Icon(
-                        Icons.help_outlined,
+                        Icons.help,
                         color: Colors.white,
                       ),
                     ),
