@@ -27,7 +27,9 @@ class Gifts extends StatelessWidget {
                             child: IconButton(
                               icon: const Icon(Icons.arrow_back),
                               iconSize: 50,
-                              onPressed: () => null,
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
                               tooltip: 'Назад',
                             )),
                       ),

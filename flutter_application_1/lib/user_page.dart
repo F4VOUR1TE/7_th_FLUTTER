@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/custom_icons.dart';
+import 'package:flutter_application_1/gifts_page.dart';
 
 class MyHomePage_test extends StatefulWidget {
   const MyHomePage_test({super.key});
@@ -37,7 +38,11 @@ class _MyHomePageState_test extends State<MyHomePage_test> {
                     left: 10,
                     child: FloatingActionButton(
                       onPressed: () {
-                        print('popa');
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const SafeArea(child: Gifts())));
                       },
                       backgroundColor: Color.fromARGB(255, 5, 142, 76),
                       tooltip: 'Подарки',
@@ -126,11 +131,13 @@ class _MyHomePageState_test extends State<MyHomePage_test> {
                         ),
                       )),
                   Positioned(
-                      top: 620,
-                      left: 10,
+                      // top: 620,
+                      left: -30,
+                      bottom: -30,
                       child: Container(
                         // width: MediaQuery.of(context).size.width,
                         // alignment: Alignment.center,
+                        transform: Matrix4.rotationZ(-0.45),
                         child: const Image(
                           image: AssetImage("assets/images/bottle.png"),
                           height: 170,
@@ -138,7 +145,8 @@ class _MyHomePageState_test extends State<MyHomePage_test> {
                         ),
                       )),
                   Positioned(
-                      top: 750,
+                      // top: 750,
+                      bottom: 1,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,

@@ -25,7 +25,7 @@ class Info extends StatelessWidget {
                         tooltip: 'Назад',
                       ))),
               Expanded(
-                  flex: 5,
+                  flex: 6,
                   child: Container(
                     padding: const EdgeInsets.all(12),
                     // color: Colors.black,
@@ -72,9 +72,9 @@ class Info extends StatelessWidget {
                       ),
                     ),
                   )),
-              const SizedBox(
-                height: 100,
-              )
+              // const SizedBox(
+              //   height: 100,
+              // )
             ]),
       ),
     );
