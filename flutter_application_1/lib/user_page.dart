@@ -64,9 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                     const SafeArea(child: Info())));
                       },
                       backgroundColor: Color.fromARGB(255, 5, 142, 76),
-                      tooltip: 'Информация',
+                      tooltip: 'Справка',
                       child: const Icon(
-                        Icons.help,
+                        Icons.question_mark,
                         color: Colors.white,
                       ),
                     ),
