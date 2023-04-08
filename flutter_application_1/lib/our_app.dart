@@ -20,6 +20,6 @@ class App extends StatelessWidget {
           primarySwatch: Colors.purple,
         ),
         // home: const SafeArea(child: MyHomePage()));
-        home: const SafeArea(child: MyHomePage()));
+        home: const SafeArea(child: Login()));
   }
 }
