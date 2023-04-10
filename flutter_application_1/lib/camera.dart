@@ -9,7 +9,7 @@ import 'package:async/async.dart';
 import 'package:my_app/prediction.dart';
 import 'package:my_app/geo_location.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+//import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 
 // class app extends StatelessWidget {
@@ -32,6 +32,8 @@ class HomeScren extends StatefulWidget {
 
 class _HomeScrenState extends State<HomeScren>{
   XFile? _image;
+  bool _saving = false;
+
   final ImagePicker picker = ImagePicker();
   
   Future<void> getPhoto(BuildContext context) async {
@@ -65,8 +67,10 @@ class _HomeScrenState extends State<HomeScren>{
           title: Text('QR Code Scanner & Generator'),
         ),
         //modalProgressHud уберите только и всё будет супер
-        body: ModalProgressHUD()
-        Center(
+        body: //ModalProgressHUD(
+        //inAsyncCall: _saving,
+        //child:
+         Center(
             child:
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -81,39 +85,41 @@ class _HomeScrenState extends State<HomeScren>{
                   ],
                 ),
         ),
+      //) 
     );
   }
 }
 
 
-uploadImageToServer(File imageFile) async {
-  final Position position = await determinePosition();
-  var geo = Map<String, String>();
-  geo['geo'] = '${position.latitude}, ${position.longitude}'; 
-  print("attempting to connecto server......");
-  var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
-  var length = await imageFile.length();
-  print(length);
+  uploadImageToServer(File imageFile) async {
+    final Position position = await determinePosition();
+    var geo = Map<String, String>();
+    
+    geo['geo'] = '${position.latitude}, ${position.longitude}'; 
+    print("attempting to connecto server......");
+    var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    var length = await imageFile.length();
+    print(length);
 
-  var uri = Uri.parse('http://192.168.0.104:5000/predict');
-  print("connection established.");
-  var request = http.MultipartRequest("POST", uri);
-  print(imageFile.path.split('/').last);
-  var multipartFile = http.MultipartFile.fromBytes('file', File(imageFile.path).readAsBytesSync(),
-      filename: imageFile.path.split('/').last);
-  //contentType: new MediaType('image', 'png'));
+    var uri = Uri.parse('http://192.168.0.104:5000/predict');
+    print("connection established.");
+    var request = http.MultipartRequest("POST", uri);
+    print(imageFile.path.split('/').last);
+    var multipartFile = http.MultipartFile.fromBytes('file', File(imageFile.path).readAsBytesSync(),
+        filename: imageFile.path.split('/').last);
+    //contentType: new MediaType('image', 'png'));
 
-  //contentType: new MediaType('image', 'png'));
-  request.files.add(multipartFile);
-  request.fields['geo'] = geo['geo']!;
-  http.Response response = await http.Response.fromStream(await request.send());
-  print("Result: ${response.statusCode}");
-  print(response.body);
-  // try{
-  //   loadPred(response.body);
-  // }
-  
-}
+    //contentType: new MediaType('image', 'png'));
+    request.files.add(multipartFile);
+    request.fields['geo'] = geo['geo']!;
+    http.Response response = await http.Response.fromStream(await request.send());
+    print("Result: ${response.statusCode}");
+    print(response.body);
+    // try{
+    //   loadPred(response.body);
+    // }
+    
+  }
 // class photoID extends StatefulWidget {
 //   const photoID({super.key});
 
