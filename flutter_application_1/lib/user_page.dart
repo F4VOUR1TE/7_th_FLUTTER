@@ -10,13 +10,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _points = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  void _give_a_point() {}
+  //   setState(() {
+  //     _counter++;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: FloatingActionButton(
                       heroTag: "btn1",
                       onPressed: () {
+                        // print("zalupa");
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -95,11 +96,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
-                      top: 425,
+                      top: 435,
                       right: 255,
                       child: Container(
                         // width: MediaQuery.of(context).size.width,
                         // alignment: Alignment.center,
+                        transform: Matrix4.rotationZ(-0.22),
                         child: const Image(
                           image: AssetImage("assets/images/berry.png"),
                           height: 65,
@@ -112,17 +114,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
                         child: OutlinedButton(
-                          child: Text('Ваши баллы : $_counter'),
+                          child: Text('Ваши баллы : $_points'),
                           style: OutlinedButton.styleFrom(
-                            primary: Color.fromARGB(255, 0, 0, 0),
+                            primary: const Color.fromARGB(255, 0, 0, 0),
                             shape: const RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10))),
-                            side: BorderSide(width: 1),
-                            textStyle: TextStyle(
+                            side: const BorderSide(width: 1),
+                            textStyle: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 35,
-                                fontStyle: FontStyle.italic),
+                                fontFamily: 'Montserrat2',
+                                fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {},
                         ),
@@ -170,7 +173,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             child: const Text(
                               "Сканировать",
-                              style: TextStyle(fontSize: 24),
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  fontFamily: 'Montserrat2',
+                                  fontWeight: FontWeight.bold),
                             )),
                       )),
                 ],
