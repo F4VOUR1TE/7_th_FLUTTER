@@ -43,10 +43,9 @@ class Gifts extends StatelessWidget {
                           child: const Text(
                             "Подарки",
                             style: TextStyle(
-                              fontSize: 30,
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.bold,
-                            ),
+                                fontSize: 30,
+                                fontFamily: 'Montserrat2',
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),

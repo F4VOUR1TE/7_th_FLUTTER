@@ -40,10 +40,9 @@ class Info extends StatelessWidget {
                     child: const Text(
                       "Это приложение создано, для того чтобы люди которые заботятся об окружающей среде и планете, получали бонусы за каждую сданную бутылку. Для того чтобы начать копить баллы на подарки, вам необходимо нажать на кнопку \"Сканировать\" и сделать 2 фотографии: первую, как вы вставили бутылку и вторую, как аппарат принял бутылку. После чего вы получите 1 балл за каждую сданную бутылку. Далее при накоплении баллов вы можете зайти в раздел \"Подарки\" и посмотреть сколько вам осталось накопить. ",
                       style: TextStyle(
-                        fontSize: 20,
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          fontSize: 20,
+                          fontFamily: 'Montserrat2',
+                          fontWeight: FontWeight.bold),
                     ),
                   )),
               // const SizedBox(
@@ -63,20 +62,16 @@ class Info extends StatelessWidget {
                     child: const Text(
                       '''
 За остальными вопросами обращайтесь по телефону:
- +7 995 888 88 88 
+ +7 ... ... .. .. 
 Или пишите в наши соц.сети:
-Вк - Пашка какашка
-Телеграм - Пашка какашка''',
+Вк - ...
+Телеграм - ...''',
                       style: TextStyle(
-                        fontSize: 20,
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          fontSize: 20,
+                          fontFamily: 'Montserrat2',
+                          fontWeight: FontWeight.bold),
                     ),
                   )),
-              // const SizedBox(
-              //   height: 100,
-              // )
             ]),
       ),
     );

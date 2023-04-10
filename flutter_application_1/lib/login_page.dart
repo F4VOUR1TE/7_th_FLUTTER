@@ -1,34 +1,70 @@
 // import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/user_page.dart';
 
-class Login extends StatelessWidget {
+import 'otp.dart';
+
+class Login extends StatefulWidget {
   const Login({super.key});
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  // final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
+  final TextEditingController _controller = TextEditingController();
+  // final TextEditingController _vercodeController = TextEditingController();
+  // String? _verificationCode;
+  // String? _phonenumber;
+  // late final String _phonenumber;
 
   @override
   Widget build(BuildContext context) {
     Color hexToColor(String code) {
-      return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
+      return Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
     }
 
-    // TODO: implement build
     return Scaffold(
+      // key: _scaffoldkey,
       body: Container(
-          child: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/images/bg1.png"), fit: BoxFit.cover)),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        child: Column(children: [
+          Container(
+            // alignment: Alignment.center,
+            padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+            child: const Image(
+              image: AssetImage("assets/images/hero.png"),
+              height: 300,
+              width: 300,
+            ),
+          ),
           Container(
             alignment: Alignment.bottomCenter,
-            padding: const EdgeInsets.fromLTRB(70, 0, 70, 10),
+            padding: const EdgeInsets.fromLTRB(70, 20, 70, 10),
             child: TextFormField(
+              keyboardType: TextInputType.number,
+              controller: _controller,
+              // check
+              // onChanged: (phonenumber) {
+              //   _phonenumber = phonenumber;
+              //   print(_phonenumber);
+              // },
+              //check
               decoration: InputDecoration(
+                prefix: const Padding(
+                  padding: EdgeInsets.all(4),
+                  child: Text('+7'),
+                ),
                 labelText: "Ведите ваш номер телефона",
-                labelStyle: TextStyle(color: Colors.black),
+                labelStyle: const TextStyle(color: Colors.black),
                 filled: true,
-                fillColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.6),
+                fillColor:
+                    const Color.fromARGB(255, 255, 255, 255).withOpacity(0.6),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25.0),
                   borderSide: BorderSide.none,
@@ -36,26 +72,33 @@ class Login extends StatelessWidget {
               ),
             ),
           ),
-
-          // top: 100,
           Container(
-            alignment: Alignment.topCenter,
-            padding: const EdgeInsets.fromLTRB(70, 0, 70, 0),
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: "Ведите СМС код",
-                labelStyle: TextStyle(color: Colors.black),
-                filled: true,
-                fillColor: Color.fromARGB(255, 255, 255, 255).withOpacity(0.6),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25.0),
-                  borderSide: BorderSide.none,
+            width: MediaQuery.of(context).size.width,
+            alignment: Alignment.center,
+            child: ElevatedButton(
+                onPressed: () {
+                  // _phonenumber = _controller.text;
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => SafeArea(
+                            child: OTPScreen(_controller.text),
+                          )));
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: const StadiumBorder(),
+                  backgroundColor: const Color.fromARGB(255, 5, 142, 76),
+                  padding: const EdgeInsets.all(10.0),
+                  minimumSize: const Size(100.0, 50.0),
                 ),
-              ),
-            ),
-          ),
+                child: const Text(
+                  "Подвердить",
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontFamily: 'Montserrat2',
+                      fontWeight: FontWeight.bold),
+                )),
+          )
         ]),
-      )),
+      ),
     );
   }
 }

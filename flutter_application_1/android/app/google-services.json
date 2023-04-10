@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "743671781633",
+    "project_id": "ecobottle-eddfa",
+    "storage_bucket": "ecobottle-eddfa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743671781633:android:4e9381c4435bb23b73e300",
+        "android_client_info": {
+          "package_name": "com.EcoBottle.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743671781633-o802qo377nhj14s3r6t5ug1ppl9jm17r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.EcoBottle.app",
+            "certificate_hash": "22fc60cacd33b6554a4c65ce62b4bcf21e56d8ec"
+          }
+        },
+        {
+          "client_id": "743671781633-gl6efgnq2kd78chdg4kl0u805jva1dpl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANr2aWtyiK5VBrjSiCf1QiVwMXm6zwH9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743671781633-gl6efgnq2kd78chdg4kl0u805jva1dpl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
