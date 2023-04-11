@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/custom_icons.dart';
 import 'package:flutter_application_1/gifts_page.dart';
 import 'package:flutter_application_1/info_page.dart';
+import 'package:flutter_application_1/camera.dart';
+import 'package:image_picker/image_picker.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -12,6 +14,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _points = 0;
+  XFile? _image;
 
   void _give_a_point() {}
   //   setState(() {
@@ -160,6 +163,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: 170,
                         ),
                       )),
+
+//кнопка сканирования
                   Positioned(
                       // top: 750,
                       bottom: 1,
@@ -167,7 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {getPhoto(context);},
                             style: ElevatedButton.styleFrom(
                               shape: const StadiumBorder(),
                               backgroundColor:

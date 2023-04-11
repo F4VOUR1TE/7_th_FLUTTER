@@ -26,6 +26,7 @@ class _LoginState extends State<Login> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       // key: _scaffoldkey,
       resizeToAvoidBottomInset: false,
       body: Container(
