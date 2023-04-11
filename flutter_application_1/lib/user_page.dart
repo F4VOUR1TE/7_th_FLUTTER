@@ -141,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       bottom: pos_y / 7,
                       right: -60,
                       child: Container(
-                        //width: MediaQuery.of(context).size.width,
+                        // height: MediaQuery.of(context).size.height,
                         // alignment: Alignment.center,
                         child: const Image(
                           image: AssetImage("assets/images/berry_2.png"),
