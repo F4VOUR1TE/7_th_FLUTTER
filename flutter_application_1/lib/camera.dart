@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
@@ -9,117 +11,101 @@ import 'package:async/async.dart';
 import 'package:my_app/prediction.dart';
 import 'package:my_app/geo_location.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 //import 'package:modal_progress_hud/modal_progress_hud.dart';
 
+XFile? _image;
+bool _saving = false;
 
-// class app extends StatelessWidget {
-//   const app({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(appBar: AppBar(centerTitle: true,), 
-//     );
-//   }
-// }
+final ImagePicker picker = ImagePicker();
 
-class HomeScren extends StatefulWidget {
-  const HomeScren({super.key});
 
-  @override
-  State<HomeScren> createState() => _HomeScrenState();
+showAlertDialog(BuildContext context) {
+
+  // set up the button
+  Widget cancelButton = TextButton(
+    child: const Text("Cancel"),
+    onPressed:  () {
+      Navigator.pop(context);
+      },
+  );
+  Widget okButton = TextButton(
+    child: const Text("OK"),
+    onPressed: () {
+      openAppSettings();
+      Navigator.pop(context); 
+      },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: const Text("Внимание!"),
+    content: const Text("Предоставьте доступ к камере!"),
+    actions: [
+      okButton,
+      cancelButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
 
 
-class _HomeScrenState extends State<HomeScren>{
-  XFile? _image;
-  bool _saving = false;
-
-  final ImagePicker picker = ImagePicker();
-  
-  Future<void> getPhoto(BuildContext context) async {
-    final File file;
-    try{
-      final XFile? photo = await picker.pickImage(source: ImageSource.camera);
-      print("foto");
-      setState(() {
-        _image = photo;
-      });
-      if (_image != null){
-          File image = File(_image!.path);
-          uploadImageToServer(image);
-      }
-      else{
-        throw Exception("ImageNotFound");
-      }  
-      
-    } 
-    catch (e){
-      throw Exception(e);
+Future<void> getPhoto(BuildContext context) async {
+  var status = await Permission.camera.status;
+  print(status);
+  try{
+    final XFile? photo = await picker.pickImage(source: ImageSource.camera);
+    print("foto");
+    if (photo != null){
+      File image = File(photo.path);
+      uploadImageToServer(image);
     }
   }
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          centerTitle: true,
-          title: Text('QR Code Scanner & Generator'),
-        ),
-        //modalProgressHud уберите только и всё будет супер
-        body: //ModalProgressHUD(
-        //inAsyncCall: _saving,
-        //child:
-         Center(
-            child:
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                        ElevatedButton.icon(
-                            onPressed: () async {
-                              getPhoto(context);
-                            },
-                            label: const Text('Camera'),
-                            icon: const Icon(Icons.image),
-                    ),
-                  ],
-                ),
-        ),
-      //) 
-    );
+  on PlatformException catch (e){
+    if(context.mounted){
+      showAlertDialog(context);
+    }
   }
+} 
+
+
+uploadImageToServer(File imageFile) async {
+  final Position position = await determinePosition();
+  var geo = <String, String>{};
+  
+  geo['geo'] = '${position.latitude}, ${position.longitude}'; 
+  print("attempting to connecto server......");
+  var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+  var length = await imageFile.length();
+  print(length);
+
+  var uri = Uri.parse('http://192.168.0.104:5000/predict');
+  print("connection established.");
+  var request = http.MultipartRequest("POST", uri);
+  print(imageFile.path.split('/').last);
+  var multipartFile = http.MultipartFile.fromBytes('file', File(imageFile.path).readAsBytesSync(),
+      filename: imageFile.path.split('/').last);
+  //contentType: new MediaType('image', 'png'));
+
+  //contentType: new MediaType('image', 'png'));
+  request.files.add(multipartFile);
+  request.fields['geo'] = geo['geo']!;
+  http.Response response = await http.Response.fromStream(await request.send());
+  print("Result: ${response.statusCode}");
+  print(response.body);
+  // try{
+  //   loadPred(response.body);
+  // }
+  
 }
-
-
-  uploadImageToServer(File imageFile) async {
-    final Position position = await determinePosition();
-    var geo = Map<String, String>();
-    
-    geo['geo'] = '${position.latitude}, ${position.longitude}'; 
-    print("attempting to connecto server......");
-    var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
-    var length = await imageFile.length();
-    print(length);
-
-    var uri = Uri.parse('http://192.168.0.104:5000/predict');
-    print("connection established.");
-    var request = http.MultipartRequest("POST", uri);
-    print(imageFile.path.split('/').last);
-    var multipartFile = http.MultipartFile.fromBytes('file', File(imageFile.path).readAsBytesSync(),
-        filename: imageFile.path.split('/').last);
-    //contentType: new MediaType('image', 'png'));
-
-    //contentType: new MediaType('image', 'png'));
-    request.files.add(multipartFile);
-    request.fields['geo'] = geo['geo']!;
-    http.Response response = await http.Response.fromStream(await request.send());
-    print("Result: ${response.statusCode}");
-    print(response.body);
-    // try{
-    //   loadPred(response.body);
-    // }
-    
-  }
 // class photoID extends StatefulWidget {
 //   const photoID({super.key});
 
@@ -134,6 +120,3 @@ class _HomeScrenState extends State<HomeScren>{
 //       return const Placeholder();
 //   }
 // }
-
-
-void main() => runApp(const MaterialApp(home:HomeScren(),));
