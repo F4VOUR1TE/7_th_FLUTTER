@@ -22,8 +22,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     // final mediaQuery = MediaQuery.of(context);
-    // double size_x = MediaQuery.of(context).size.width;
-    // double pos_y = MediaQuery.of(context).size.height;
+    double size_x = MediaQuery.of(context).size.width;
+    double pos_y = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Center(
       child: Container(
@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   Positioned(
-                      top: 35,
+                      top: pos_y / 16,
                       // right: 50,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
-                      top: 235,
+                      top: (pos_y / 16) + 189,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
-                      top: 380,
+                      top: pos_y / 1.8,
                       right: 255,
                       child: Container(
                         // width: MediaQuery.of(context).size.width,
@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
-                      top: 425,
+                      top: (pos_y / 1.8) + 45,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
-                      bottom: 150,
+                      bottom: pos_y / 7,
                       right: -60,
                       child: Container(
                         // height: MediaQuery.of(context).size.height,
@@ -190,3 +190,19 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
   }
 }
+// Positioned(
+//                     top: 10,
+//                     // right: 50,
+//                     child: Container(
+//                         width: MediaQuery.of(context).size.width,
+//                         alignment: Alignment.center,
+//                         child: Container(
+//                           height: MediaQuery.of(context).size.height / 2,
+//                           width: MediaQuery.of(context).size.width / 2,
+//                           // width: MediaQuery.of(context).size.width,
+//                           // alignment: Alignment.center,
+//                           child: const Image(
+//                             image: AssetImage("assets/images/word.png"),
+//                           ),
+//                         )),
+//                   ),
