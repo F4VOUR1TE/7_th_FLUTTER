@@ -29,49 +29,52 @@ class Info extends StatelessWidget {
               Expanded(
                   flex: 6,
                   child: Container(
-                    padding: const EdgeInsets.all(12),
-                    // color: Colors.black,
-                    margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-                    decoration: const BoxDecoration(
-                      color: Color.fromRGBO(243, 186, 206, 0.613),
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
+                      padding: const EdgeInsets.all(12),
 
-                    child: const Text(
-                      "Это приложение создано, для того чтобы люди которые заботятся об окружающей среде и планете, получали бонусы за каждую сданную бутылку. Для того чтобы начать копить баллы на подарки, вам необходимо нажать на кнопку \"Сканировать\" и сделать 2 фотографии: первую, как вы вставили бутылку и вторую, как аппарат принял бутылку. После чего вы получите 1 балл за каждую сданную бутылку. Далее при накоплении баллов вы можете зайти в раздел \"Подарки\" и посмотреть сколько вам осталось накопить. ",
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Montserrat2',
-                          fontWeight: FontWeight.bold),
-                    ),
-                  )),
+                      // color: Colors.black,
+                      margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                      decoration: const BoxDecoration(
+                        color: Color.fromRGBO(243, 186, 206, 0.613),
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
+                      child: const SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Text(
+                          "Это приложение создано, для того чтобы люди которые заботятся об окружающей среде и планете, получали бонусы за каждую сданную бутылку. Для того чтобы начать копить баллы на подарки, вам необходимо нажать на кнопку \"Сканировать\" и сделать 2 фотографии: первую, как вы вставили бутылку и вторую, как аппарат принял бутылку. После чего вы получите 1 балл за каждую сданную бутылку. Далее при накоплении баллов вы можете зайти в раздел \"Подарки\" и посмотреть сколько вам осталось накопить. ",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'Montserrat2',
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ))),
               // const SizedBox(
               //   height: 50,
               // ),
               Expanded(
                   flex: 3,
                   child: Container(
-                    padding: const EdgeInsets.all(12),
-                    // color: Colors.black,
-                    margin: const EdgeInsets.fromLTRB(20, 20, 20, 40),
-                    decoration: const BoxDecoration(
-                      color: Color.fromRGBO(243, 186, 206, 0.613),
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
-
-                    child: const Text(
-                      '''
+                      padding: const EdgeInsets.all(12),
+                      // color: Colors.black,
+                      margin: const EdgeInsets.fromLTRB(20, 20, 20, 40),
+                      decoration: const BoxDecoration(
+                        color: Color.fromRGBO(243, 186, 206, 0.613),
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
+                      child: const SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Text(
+                          '''
 За остальными вопросами обращайтесь по телефону:
  +7 ... ... .. .. 
 Или пишите в наши соц.сети:
 Вк - ...
 Телеграм - ...''',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Montserrat2',
-                          fontWeight: FontWeight.bold),
-                    ),
-                  )),
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'Montserrat2',
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ))),
             ]),
       ),
     );

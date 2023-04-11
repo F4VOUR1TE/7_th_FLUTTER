@@ -5,6 +5,7 @@ import 'package:flutter_application_1/info_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -20,6 +21,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // final mediaQuery = MediaQuery.of(context);
+    // double size_x = MediaQuery.of(context).size.width;
+    // double pos_y = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Center(
       child: Container(
@@ -73,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   Positioned(
-                      top: 50,
+                      top: 35,
                       // right: 50,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
@@ -85,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
-                      top: 250,
+                      top: 235,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
@@ -96,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
-                      top: 435,
+                      top: 380,
                       right: 255,
                       child: Container(
                         // width: MediaQuery.of(context).size.width,
@@ -109,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
-                      top: 480,
+                      top: 425,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
@@ -131,10 +135,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
-                      top: 500,
+                      bottom: 150,
                       right: -60,
                       child: Container(
-                        // width: MediaQuery.of(context).size.width,
+                        // height: MediaQuery.of(context).size.height,
                         // alignment: Alignment.center,
                         child: const Image(
                           image: AssetImage("assets/images/berry_2.png"),

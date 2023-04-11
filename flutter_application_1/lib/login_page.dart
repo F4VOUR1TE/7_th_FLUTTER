@@ -27,6 +27,7 @@ class _LoginState extends State<Login> {
 
     return Scaffold(
       // key: _scaffoldkey,
+      resizeToAvoidBottomInset: false,
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -36,9 +37,10 @@ class _LoginState extends State<Login> {
         child: Column(children: [
           Container(
             // alignment: Alignment.center,
-            padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+            padding: const EdgeInsets.fromLTRB(0, 45, 0, 0),
             child: const Image(
               image: AssetImage("assets/images/hero.png"),
+              // fit: BoxFit.contain,
               height: 300,
               width: 300,
             ),
@@ -73,7 +75,8 @@ class _LoginState extends State<Login> {
             ),
           ),
           Container(
-            width: MediaQuery.of(context).size.width,
+            // width: MediaQuery.of(context).size.width,
+            // padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
             alignment: Alignment.center,
             child: ElevatedButton(
                 onPressed: () {
