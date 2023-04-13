@@ -37,13 +37,13 @@ class Gifts extends StatelessWidget {
                         flex: 1,
                         child: Container(
                           height: 200,
-                          width: 200,
+                          width: 250,
                           // color: Colors.orange,
                           alignment: Alignment.center,
                           child: const Text(
                             "Подарки",
                             style: TextStyle(
-                                fontSize: 30,
+                                fontSize: 28,
                                 fontFamily: 'Montserrat2',
                                 fontWeight: FontWeight.bold),
                           ),
