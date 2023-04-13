@@ -218,6 +218,12 @@
       "languageVersion": "2.15"
     },
     {
+      "name": "get",
+      "rootUri": "file:///C:/Users/subma/AppData/Local/Pub/Cache/hosted/pub.dev/get-4.6.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "http",
       "rootUri": "file:///C:/Users/subma/AppData/Local/Pub/Cache/hosted/pub.dev/http-0.13.5",
       "packageUri": "lib/",
@@ -506,7 +512,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-04-11T18:15:41.148346Z",
+  "generated": "2023-04-11T21:23:49.036796Z",
   "generator": "pub",
-  "generatorVersion": "2.19.5"
+  "generatorVersion": "2.19.6"
 }
