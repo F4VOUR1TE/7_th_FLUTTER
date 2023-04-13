@@ -16,8 +16,22 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _points = 0;
+  bool prediction = false;
   // String? uid;
   final db = FirebaseFirestore.instance;
+
+  void resetPoints() {
+    db.collection('users').doc('+7${widget.phonenumber}').set({'points': 0});
+  }
+
+  void increasePoints(prediction) {
+    if (prediction) {
+      db
+          .collection('users')
+          .doc('+7${widget.phonenumber}')
+          .set({'points': (_points + 1)});
+    }
+  }
 
   void getpoints() {
     final docRef = db.collection("users").doc('+7${widget.phonenumber}');
@@ -148,17 +162,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {
-                            // final docRef = db
-                            //     .collection("users")
-                            //     .doc('+7${widget.phonenumber}');
-                            // docRef.get().then(
-                            //   (DocumentSnapshot doc) {
-                            //     final data = doc.data() as Map<String, dynamic>;
-                            //     print(data['points'].runtimeType);
-                            //   },
-                            //   onError: (e) =>
-                            //       print("Error getting document: $e"),
-                            // );
+                            // increasePoints(prediction);
+                            // resetPoints();
                           },
                         ),
                       )),
@@ -196,7 +201,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
                         child: ElevatedButton(
-                            onPressed: () {camera.getPhoto(context);},
+                            onPressed: () {
+                              getPhoto(context);
+                            },
                             style: ElevatedButton.styleFrom(
                               shape: const StadiumBorder(),
                               backgroundColor:

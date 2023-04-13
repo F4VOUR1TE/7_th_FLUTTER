@@ -165,10 +165,6 @@ class _OTPScreenState extends State<OTPScreen> {
                           ))),
                   (route) => false);
             }
-            // else {db
-            //                   .collection('users')
-            //                   .doc('+7${widget.phone}')
-            //                   .set({'points': 0});}
           });
         },
         verificationFailed: (FirebaseAuthException e) {
