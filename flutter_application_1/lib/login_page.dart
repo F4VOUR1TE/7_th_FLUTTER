@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_page.dart';
+import 'package:get/get.dart';
 
 import 'otp.dart';
 
@@ -81,6 +82,9 @@ class _LoginState extends State<Login> {
             child: ElevatedButton(
                 onPressed: () {
                   // _phonenumber = _controller.text;
+                  // Get.off(SafeArea(
+                  //           child: OTPScreen(_controller.text),
+                  //         ));
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => SafeArea(
                             child: OTPScreen(_controller.text),
