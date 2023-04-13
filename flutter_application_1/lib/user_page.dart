@@ -16,12 +16,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _points = 0;
-<<<<<<< Updated upstream
-  XFile? _image;
-=======
   // String? uid;
   final db = FirebaseFirestore.instance;
->>>>>>> Stashed changes
 
   void getpoints() {
     final docRef = db.collection("users").doc('+7${widget.phonenumber}');
@@ -205,7 +201,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
                         child: ElevatedButton(
-                            onPressed: () {getPhoto(context);},
+                            onPressed: () {
+                              getPhoto(context);
+                            },
                             style: ElevatedButton.styleFrom(
                               shape: const StadiumBorder(),
                               backgroundColor:
