@@ -165,10 +165,6 @@ class _OTPScreenState extends State<OTPScreen> {
                           ))),
                   (route) => false);
             }
-            // else {db
-            //                   .collection('users')
-            //                   .doc('+7${widget.phone}')
-            //                   .set({'points': 0});}
           });
         },
         verificationFailed: (FirebaseAuthException e) {
@@ -183,14 +179,8 @@ class _OTPScreenState extends State<OTPScreen> {
           setState(() {
             _verificationCode = verificationID;
           });
-<<<<<<< Updated upstream
-        }
-        //timeout: Duration(seconds: 20)
-        );
-=======
         },
         timeout: Duration(seconds: 60));
->>>>>>> Stashed changes
   }
 
   @override
