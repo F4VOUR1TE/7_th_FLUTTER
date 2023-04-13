@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/custom_icons.dart';
 import 'package:flutter_application_1/gifts_page.dart';
@@ -6,22 +8,42 @@ import 'package:flutter_application_1/camera.dart' as camera;
 import 'package:image_picker/image_picker.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  final String phonenumber;
+  MyHomePage({super.key, required this.phonenumber});
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _points = 0;
-  XFile? _image;
-  void _give_a_point() {}
-  //   setState(() {
-  //     _counter++;
-  //   });
-  // }
+  // String? uid;
+  final db = FirebaseFirestore.instance;
+
+  void getpoints() {
+    final docRef = db.collection("users").doc('+7${widget.phonenumber}');
+    docRef.get().then(
+      (DocumentSnapshot doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        setState(() {
+          _points = data['points'];
+        });
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getpoints();
+  }
 
   @override
   Widget build(BuildContext context) {
+    // final mediaQuery = MediaQuery.of(context);
+    getpoints();
+    double size_x = MediaQuery.of(context).size.width;
+    double pos_y = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Center(
       child: Container(
@@ -125,7 +147,19 @@ class _MyHomePageState extends State<MyHomePage> {
                                 fontFamily: 'Montserrat2',
                                 fontWeight: FontWeight.bold),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            // final docRef = db
+                            //     .collection("users")
+                            //     .doc('+7${widget.phonenumber}');
+                            // docRef.get().then(
+                            //   (DocumentSnapshot doc) {
+                            //     final data = doc.data() as Map<String, dynamic>;
+                            //     print(data['points'].runtimeType);
+                            //   },
+                            //   onError: (e) =>
+                            //       print("Error getting document: $e"),
+                            // );
+                          },
                         ),
                       )),
                   Positioned(

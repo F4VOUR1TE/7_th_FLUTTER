@@ -1,4 +1,8 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/user_page.dart';
@@ -15,6 +19,9 @@ class _OTPScreenState extends State<OTPScreen> {
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
   String? _verificationCode;
   final TextEditingController _pinPutController = TextEditingController();
+  final db = FirebaseFirestore.instance;
+  // final DocumentReference documentReference = FirebaseFirestore.instance.collection('users').doc('+7${widget.phone}');
+  // StreamSubscription<DocumentSnapshot>? subscription;
 
   final defaultPinTheme = PinTheme(
     width: 56,
@@ -28,6 +35,7 @@ class _OTPScreenState extends State<OTPScreen> {
       borderRadius: BorderRadius.circular(20),
     ),
   );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,11 +80,46 @@ class _OTPScreenState extends State<OTPScreen> {
                               smsCode: _pinPutController.text))
                           .then((value) async {
                         if (value.user != null) {
+                          //
+                          // еще вариант
+                          //FirebaseFirestore.instance.collection('users').doc('+7${widget.phone}').snapshots().listen((value){
+                          //if (!(value.exists)) {
+                          //db.collection('users').doc('+7${widget.phone}').set({'points': 0});}
+                          //
+                          //
+                          //})
+                          //
+                          //другой вариант
+                          //db.collection('users').doc(widget.phonenumber).get()
+                          //    .then((DocumentSnapshot documentSnapshot) {
+                          //  if (documentSnapshot.exists) {
+                          //    db.collection('users').doc('+7${widget.phone}').set({'points': 0});
+                          //  }
+                          //});
+
+                          final DocumentReference documentReference =
+                              FirebaseFirestore.instance
+                                  .collection('users')
+                                  .doc('+7${widget.phone}');
+                          StreamSubscription<DocumentSnapshot>? subscription;
+                          subscription = documentReference
+                              .snapshots()
+                              .listen((datasnapshot) {
+                            if (!(datasnapshot.exists)) {
+                              db
+                                  .collection('users')
+                                  .doc('+7${widget.phone}')
+                                  .set({'points': 0});
+                            }
+                          });
+
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      const SafeArea(child: MyHomePage())),
+                                  builder: (context) => SafeArea(
+                                          child: MyHomePage(
+                                        phonenumber: widget.phone,
+                                      ))),
                               (route) => false);
                         }
                       });
@@ -116,9 +159,16 @@ class _OTPScreenState extends State<OTPScreen> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => SafeArea(child: MyHomePage())),
+                      builder: (context) => SafeArea(
+                              child: MyHomePage(
+                            phonenumber: widget.phone,
+                          ))),
                   (route) => false);
             }
+            // else {db
+            //                   .collection('users')
+            //                   .doc('+7${widget.phone}')
+            //                   .set({'points': 0});}
           });
         },
         verificationFailed: (FirebaseAuthException e) {
@@ -134,8 +184,7 @@ class _OTPScreenState extends State<OTPScreen> {
             _verificationCode = verificationID;
           });
         },
-        timeout: Duration(seconds: 60)
-        );
+        timeout: Duration(seconds: 60));
   }
 
   @override
