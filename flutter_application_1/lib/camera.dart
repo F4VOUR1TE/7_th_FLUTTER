@@ -84,16 +84,21 @@ uploadImageToServer(File imageFile) async {
 
   request.files.add(multipartFile);
   request.fields['geo'] = geo['geo']!;
-  http.Response response = await http.Response.fromStream(await request.send());
-  print("Result: ${response.statusCode}");
-  if (response.statusCode==200){
-    try{
-    print(response.body);
-    final Map parsed = json.decode(response.body);
-    print(parsed['prediction']);
-    return parsed['prediction'];
-    }catch (FormatException){
-      return false;
+  try{
+    http.Response response = await http.Response.fromStream(await request.send());
+    print("Result: ${response.statusCode}");
+    if (response.statusCode==200){
+      try{
+        print(response.body);
+        final Map parsed = json.decode(response.body);
+        print(parsed['prediction']);
+        return parsed['prediction'];
+      }catch (FormatException){
+        return false;
+      }
     }
+  }catch(e){
+    return false;
   }
+
 }
