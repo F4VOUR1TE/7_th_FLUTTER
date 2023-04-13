@@ -16,7 +16,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _points = 0;
-  bool prediction = false;
   // String? uid;
   final db = FirebaseFirestore.instance;
 
@@ -24,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
     db.collection('users').doc('+7${widget.phonenumber}').set({'points': 0});
   }
 
-  void increasePoints(prediction) {
+  void increasePoints(bool prediction) {
     if (prediction) {
       db
           .collection('users')
@@ -208,6 +207,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: ElevatedButton(
                             onPressed: () {camera.getPhoto().then((pred){
                               final bool predict = pred;
+                              increasePoints(predict);
                             });},
                             style: ElevatedButton.styleFrom(
                               shape: const StadiumBorder(),

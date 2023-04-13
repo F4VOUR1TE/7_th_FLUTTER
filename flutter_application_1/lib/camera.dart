@@ -64,7 +64,7 @@ uploadImageToServer(File imageFile) async {
   final Position? position = await determinePosition();
   if (position == null){
     dialog1();
-    return;
+    return false;
   }
   var geo = <String, String>{};
   
