@@ -28,10 +28,10 @@ def prediction():
             user_file.save(path)
             if image_geo_data(geo_loc):
                 identification = is_bottle.is_bottle(path)
-                return jsonify({
-                    "prediction": identification,
-                    })
             else:
-                return "wrong geo position"
+                identification = False
+            return jsonify({
+                "prediction": identification,
+            })
         else:
             return "wrong type of file"

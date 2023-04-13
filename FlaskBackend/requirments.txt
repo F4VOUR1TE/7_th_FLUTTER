@@ -3,7 +3,7 @@ numpy~=1.21.4
 art~=5.8
 flask~=2.2.3
 gpsphoto
-eifread
+exifread
 PIL
 piexif
 geopy
