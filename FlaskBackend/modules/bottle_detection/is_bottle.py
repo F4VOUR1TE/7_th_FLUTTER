@@ -21,7 +21,7 @@ def is_bottle(image_to_process):
 
     image_to_process = cv2.imread(image_to_process)
 
-    k=0
+    k = False
     height, width, _ = image_to_process.shape
     blob = cv2.dnn.blobFromImage(image_to_process, 1 / 255, (608, 608),
                                  (0, 0, 0), swapRB=True, crop=False)
@@ -57,7 +57,7 @@ def is_bottle(image_to_process):
         # For debugging, we draw objects included in the desired classes
         if classes[class_index] in classes_to_look_for:
             objects_count += 1
-            k = 1
+            k = True
     return k
 
 
