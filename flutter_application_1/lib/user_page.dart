@@ -97,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   Positioned(
+                      top: pos_y / 16,
                       // right: 50,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
@@ -108,6 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
+                      top: (pos_y / 16) + 189,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
@@ -118,6 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
+                    top: pos_y / 1.8,
                       right: 255,
                       child: Container(
                         // width: MediaQuery.of(context).size.width,
@@ -130,6 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
+                      top: (pos_y / 1.8) + 45,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
@@ -163,6 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
+                      bottom: pos_y / 7,
                       right: -60,
                       child: Container(
                         //width: MediaQuery.of(context).size.width,
@@ -196,7 +201,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
                         child: ElevatedButton(
-                            onPressed: () {camera.getPhoto(context);},
+                            onPressed: () {camera.getPhoto().then((pred){
+                              final bool predict = pred;
+                            });},
                             style: ElevatedButton.styleFrom(
                               shape: const StadiumBorder(),
                               backgroundColor:
