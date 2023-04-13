@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/custom_icons.dart';
 import 'package:flutter_application_1/gifts_page.dart';
 import 'package:flutter_application_1/info_page.dart';
-import 'package:flutter_application_1/camera.dart';
+import 'package:flutter_application_1/camera.dart' as camera;
 import 'package:image_picker/image_picker.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -97,7 +97,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   Positioned(
-                      top: pos_y / 16,
                       // right: 50,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
@@ -109,7 +108,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
-                      top: (pos_y / 16) + 189,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
@@ -120,7 +118,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
-                      top: pos_y / 1.8,
                       right: 255,
                       child: Container(
                         // width: MediaQuery.of(context).size.width,
@@ -133,7 +130,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
-                      top: (pos_y / 1.8) + 45,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
@@ -167,10 +163,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Positioned(
-                      bottom: pos_y / 7,
                       right: -60,
                       child: Container(
-                        // height: MediaQuery.of(context).size.height,
+                        //width: MediaQuery.of(context).size.width,
                         // alignment: Alignment.center,
                         child: const Image(
                           image: AssetImage("assets/images/berry_2.png"),
@@ -201,9 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         width: MediaQuery.of(context).size.width,
                         alignment: Alignment.center,
                         child: ElevatedButton(
-                            onPressed: () {
-                              getPhoto(context);
-                            },
+                            onPressed: () {camera.getPhoto(context);},
                             style: ElevatedButton.styleFrom(
                               shape: const StadiumBorder(),
                               backgroundColor:
